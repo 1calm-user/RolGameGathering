@@ -1,2 +1,2 @@
 # RolGameGathering
-Si
+*Inserte una descripción relacionada con el Repositorio
