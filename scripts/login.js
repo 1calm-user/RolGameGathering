@@ -1,11 +1,11 @@
- // Load header component
- fetch('../components/header.html')
- .then(response => response.text())
- .then(data => {
-     document.getElementById('header-placeholder').innerHTML = data;
-     // Update active state
-     document.querySelector('#login').classList.add('active');
- });
+ // // Load header component
+ // fetch('../components/header.html')
+ // .then(response => response.text())
+ // .then(data => {
+ //     document.getElementById('header-placeholder').innerHTML = data;
+ //     // Update active state
+ //     document.querySelector('#login').classList.add('active');
+ // });
 
 // Initialize form validation
 const loginForm = document.getElementById('loginForm');
