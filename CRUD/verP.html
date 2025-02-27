@@ -58,16 +58,7 @@
     </table>
     </main>
 
-    <script src="../scripts/characters.js"></script>
-    <script>
-        // Load header component
-        fetch('../components/header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-                // Update active state
-                document.querySelector('#verP').classList.add('active');
-            });
-    </script>
+    <script src="../scripts/characters.js" defer></script>
+    <script src="../scripts/verP.js" defer></script>
 </body>
 </html>
