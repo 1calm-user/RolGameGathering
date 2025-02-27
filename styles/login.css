@@ -1,134 +1,175 @@
+/* Paleta utilizada en las páginas, con variantes claras y oscuras */
+:root {
+  --darkPurple: #6b4e71;
+  --neutralPurple: #8e6b94;
+  --lightPurple: #b194b7;
+
+  --darkBlue: #00aaac;
+  --neutralBlue: #00d1d4;
+  --lightBlue: #00f8fb;
+
+  --darkYellow: #f9bc08;
+  --neutralYellow: #ffcd39;
+  --lightYellow: #ffde6b;
+
+  --midYellowCream1: #ffe38c;
+  --midYellowCream2: #ffea9c;
+
+  --darkCream: #fedcad;
+  --neutralCream: #ffe7c6;
+  --lightCream: #fff2de;
+
+  --darkGray: #afa8ae;
+  --neutralGray: #c5bfc4;
+  --lightGray: #dbd7da;
+
+  --darkBlack: #2a2d34;
+  --neutralBlack: #464a54;
+  --lightBlack: #626774;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 94.5vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  height: 100%;
+  background: linear-gradient(var(--darkPurple), rgb(172, 75, 196));
 }
 
 form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 50px 30px;
+  background: linear-gradient(var(--midYellowCream1), 70%, var(--lightYellow));
+  border-radius: 8px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
 fieldset {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 4px;
+  border: 5px double var(--darkBlack);
+  padding: 40px 40px 10px;
+  border-radius: 7px;
+}
+
+fieldset p {
+  text-align: center;
+  margin-top: 20px;
 }
 
 legend {
-    color: #333;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 0 10px;
+  color: var(--darkBlack);
+  margin: 0 auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0 10px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--darkBlack);
 }
 
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid var(--darkBlue);
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #4CAF50;
-    outline: none;
+  border-color: var(--darkBlue);
+  outline: none;
 }
 
 input[type="button"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--darkBlue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
 }
 
 input[type="button"]:hover {
-    background-color: #45a049;
+  background-color: var(--neutralBlue);
 }
 
 input[type="button"]:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .error {
-    color: #f44336;
-    font-size: 0.8em;
-    margin-top: -8px;
-    margin-bottom: 10px;
-    display: none;
+  color: #f44336;
+  font-size: 0.8em;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  display: none;
 }
 
 input.error {
-    border-color: #f44336;
+  border-color: #f44336;
 }
 
 .toast-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
 .toast {
-    padding: 12px 24px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    color: white;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.3s ease;
+  padding: 12px 24px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  color: white;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
 }
 
 .toast.show {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .toast-success {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 
 .toast-error {
-    background-color: #f44336;
+  background-color: #f44336;
 }
 
 .toast-info {
-    background-color: #2196F3;
+  background-color: #2196F3;
 }
 
 a {
-    color: #4CAF50;
-    text-decoration: none;
+  color: var(--darkBlue);
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .error-message {
-    color: #e74c3c;
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  color: #e74c3c;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
