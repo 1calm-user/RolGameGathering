@@ -25,6 +25,44 @@
         rangeValue.textContent = this.value;
       });
 
+      document.addEventListener("DOMContentLoaded", function() {
+        // Obtener el parámetro 'id' de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const charId = urlParams.get('id'); // Obtener el id del personaje desde la URL
+        
+        if (charId) {
+            // Hacer una solicitud GET para obtener los datos del personaje
+            fetch(`/api/characters/${charId}`)
+                .then(response => response.json())
+                .then(data => {
+                  let objetos = data.objects;
+                  objetos = objetos.split(" y ");
+                    // Rellenar el formulario con los datos obtenidos
+                    document.getElementById('char_id').value = data.char_id;  // Rellenar el campo oculto con el ID
+                    document.getElementById('char_name').value = data.char_name;
+                    document.getElementById('race').value = data.race;
+                    document.getElementById('char_weight').value = data.char_weight;
+                    document.getElementById('weapons').value = objetos[0];
+                    document.getElementById('items').value = objetos[1];
+                    document.getElementById('abilities').value = data.abilities;
+                    document.getElementById('dexterity').value = data.dexterity;
+                    document.querySelector('.range-value').textContent = data.dexterity;
+                    document.querySelector('.character-count').textContent = `${data.char_name.length}/50`; // Para el nombre del personaje
+                    document.querySelector('#items + .character-count').textContent = `${data.items.length}/100`; // Para los objetos
+                    document.querySelector('#abilities + .character-count').textContent = `${data.abilities.length}/500`; // Para las habilidades
+                    document.querySelector('#weapons + .character-count').textContent = `${data.weapons.length}/100`; // Para las armas
+                })
+                .catch(error => {
+                    console.error('Error al obtener los datos del personaje:', error);
+                    toastr.error('Error al cargar los datos del personaje');
+                });
+        } else {
+            // Si no hay ID en la URL, mostrar un error o redirigir
+            toastr.error('No se ha proporcionado un ID válido para editar');
+            window.location.href = 'verP.html'; // Redirigir a otra página si no hay ID
+        }
+      });
+
       // Form submission
       document
         .getElementById("modifyCharacterForm")
