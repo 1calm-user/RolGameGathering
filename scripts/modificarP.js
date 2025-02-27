@@ -48,9 +48,9 @@
                     document.getElementById('dexterity').value = data.dexterity;
                     document.querySelector('.range-value').textContent = data.dexterity;
                     document.querySelector('.character-count').textContent = `${data.char_name.length}/50`; // Para el nombre del personaje
-                    document.querySelector('#items + .character-count').textContent = `${data.items.length}/100`; // Para los objetos
+                    document.querySelector('#items + .character-count').textContent = `${objetos[1].length}/100`; // Para los objetos
                     document.querySelector('#abilities + .character-count').textContent = `${data.abilities.length}/500`; // Para las habilidades
-                    document.querySelector('#weapons + .character-count').textContent = `${data.weapons.length}/100`; // Para las armas
+                    document.querySelector('#weapons + .character-count').textContent = `${objetos[0].length}/100`; // Para las armas
                 })
                 .catch(error => {
                     console.error('Error al obtener los datos del personaje:', error);
