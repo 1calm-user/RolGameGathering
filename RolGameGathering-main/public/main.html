@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rol Game Gathering - Gestión de Personajes</title>
+    <link rel="stylesheet" href="../styles/personajes.css">
+    <link rel="icon" href="../imagenes/icon.webp" type="image/webp">
+    <link rel="stylesheet" href="../styles/validation.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="list">Listado de Personajes</button>
+            <button class="tab-button" data-tab="create">Crear Personaje</button>
+            <button class="tab-button" data-tab="modify">Modificar Personaje</button>
+            <button class="tab-button" data-tab="delete">Eliminar Personaje</button>
+        </div>
+
+        <!-- Tab content -->
+        <div class="tab-content" id="list" style="display: block;">
+            <div class="search-form">
+                <h3>Buscar Personajes</h3>
+                <form id="searchForm">
+                    <input type="text" id="searchName" placeholder="Nombre del personaje">
+                    <select id="searchClass">
+                        <option value="">Todas las clases</option>
+                        <option value="guerrero">Guerrero</option>
+                        <option value="mago">Mago</option>
+                        <option value="clerigo">Clérigo</option>
+                        <option value="picaro">Pícaro</option>
+                    </select>
+                    <button type="submit">Buscar</button>
+                </form>
+                <div class="view-toggle">
+                    <button id="tableView" class="active">Vista de Tabla</button>
+                    <button id="cardView">Vista de Tarjetas</button>
+                </div>
+            </div>
+
+            <div id="characterList">
+                <!-- Table view -->
+                <table class="character-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">Nombre ↕</th>
+                            <th data-sort="class">Clase ↕</th>
+                            <th data-sort="level">Nivel ↕</th>
+                            <th data-sort="race">Raza ↕</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="characterTableBody">
+                        <!-- Character rows will be inserted here -->
+                    </tbody>
+                </table>
+
+                <!-- Card view -->
+                <div id="characterCards" style="display: none;" class="character-cards">
+                    <!-- Character cards will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="create">
+            <h3>Crear Nuevo Personaje</h3>
+            <form id="createForm" class="character-form">
+                <div id="formError" class="error-message" style="display: none;"></div>
+                <div id="formSuccess" class="success-message" style="display: none;"></div>
+                <div class="form-group">
+                    <label for="char_name">Nombre:</label>
+                    <input type="text" id="char_name" name="char_name" required minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ\s]{2,}" title="El nombre debe contener al menos 2 caracteres y solo letras">
+                </div>
+                <div class="form-group">
+                    <label for="race">Raza:</label>
+                    <select id="race" name="race" required>
+                        <option value="">Selecciona una raza</option>
+                        <option value="humano">Humano</option>
+                        <option value="elfo">Elfo</option>
+                        <option value="enano">Enano</option>
+                        <option value="halfling">Halfling</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="char_class">Clase:</label>
+                    <select id="char_class" name="char_class" required>
+                        <option value="">Selecciona una clase</option>
+                        <option value="guerrero">Guerrero</option>
+                        <option value="mago">Mago</option>
+                        <option value="clerigo">Clérigo</option>
+                        <option value="picaro">Pícaro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="char_level">Nivel:</label>
+                    <input type="number" id="char_level" name="char_level" min="1" max="20" required value="1">
+                    <div class="range-slider">
+                        <input type="range" id="levelRange" min="1" max="20" value="1">
+                        <span class="range-value">1</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="char_weight">Peso (kg):</label>
+                    <input type="number" id="char_weight" name="char_weight" step="0.1" min="20" max="200" required title="El peso debe estar entre 20 y 200 kg">
+                </div>
+                <div class="form-group">
+                    <label for="objects">Objetos (separados por coma):</label>
+                    <input type="text" id="objects" name="objects" pattern="[A-Za-zÀ-ÿ0-9\s,]{0,255}" title="Lista de objetos separados por comas">
+                </div>
+                <div class="form-group">
+                    <label for="abilities">Habilidades:</label>
+                    <textarea id="abilities" name="abilities" rows="4" maxlength="500" placeholder="Describe las habilidades del personaje"></textarea>
+                    <small class="char-count">0/500</small>
+                </div>
+                <div class="form-group">
+                    <label for="dexterity">Destreza:</label>
+                    <input type="number" id="dexterity" name="dexterity" min="1" max="100" required title="La destreza debe estar entre 1 y 100">
+                    <div class="range-slider">
+                        <input type="range" id="dexterityRange" min="1" max="100" value="50">
+                        <span class="range-value">50</span>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Crear Personaje</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="modify">
+            <h3>Modificar Personaje</h3>
+            <form id="modifyForm" class="character-form">
+                <div class="form-group">
+                    <label for="modifyCharacter">Seleccionar Personaje:</label>
+                    <select id="modifyCharacter" name="characterId" required>
+                        <option value="">Selecciona un personaje</option>
+                        <!-- Character options will be dynamically populated -->
+                    </select>
+                </div>
+                <div id="modifyFormFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="mod_char_name">Nombre:</label>
+                        <input type="text" id="mod_char_name" name="char_name" required minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ\s]{2,}" title="El nombre debe contener al menos 2 caracteres y solo letras">
+                    </div>
+                    <div class="form-group">
+                        <label for="mod_race">Raza:</label>
+                        <select id="mod_race" name="race" required>
+                            <option value="">Selecciona una raza</option>
+                            <option value="humano">Humano</option>
+                            <option value="elfo">Elfo</option>
+                            <option value="enano">Enano</option>
+                            <option value="halfling">Halfling</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod_char_class">Clase:</label>
+                        <select id="mod_char_class" name="char_class" required>
+                            <option value="">Selecciona una clase</option>
+                            <option value="guerrero">Guerrero</option>
+                            <option value="mago">Mago</option>
+                            <option value="clerigo">Clérigo</option>
+                            <option value="picaro">Pícaro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-content" id="delete">
+            <h3>Eliminar Personaje</h3>
+            <div class="delete-section">
+                <p>Selecciona los personajes que deseas eliminar:</p>
+                <div class="form-group">
+                    <select id="deleteCharacterSelect" multiple class="character-select" size="6">
+                        <!-- Character options will be dynamically populated -->
+                    </select>
+                    <small class="help-text">Mantén presionada la tecla Ctrl para seleccionar múltiples personajes</small>
+                </div>
+                <button id="deleteSelected" class="delete-btn">Eliminar Seleccionados</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/validation.js"></script>
+    <script src="scripts/characters.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+        // Load header component
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+
+        // Tab switching functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Show selected tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(button.dataset.tab).style.display = 'block';
+            });
+        });
+
+        // View toggle functionality
+        document.getElementById('tableView').addEventListener('click', () => {
+            document.querySelector('.character-table').style.display = 'table';
+            document.getElementById('characterCards').style.display = 'none';
+            document.getElementById('tableView').classList.add('active');
+            document.getElementById('cardView').classList.remove('active');
+        });
+
+        document.getElementById('cardView').addEventListener('click', () => {
+            document.querySelector('.character-table').style.display = 'none';
+            document.getElementById('characterCards').style.display = 'grid';
+            document.getElementById('cardView').classList.add('active');
+            document.getElementById('tableView').classList.remove('active');
+        });
+
+        // Sorting functionality
+        document.querySelectorAll('th[data-sort]').forEach(header => {
+            header.addEventListener('click', () => {
+                const sortBy = header.dataset.sort;
+                const tbody = document.getElementById('characterTableBody');
+                const rows = Array.from(tbody.getElementsByTagName('tr'));
+
+                rows.sort((a, b) => {
+                    const aValue = a.querySelector(`[data-${sortBy}]`).dataset[sortBy];
+                    const bValue = b.querySelector(`[data-${sortBy}]`).dataset[sortBy];
+                    return aValue.localeCompare(bValue);
+                });
+
+                // Clear and repopulate table
+                tbody.innerHTML = '';
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+</body>
+</html>
