@@ -146,10 +146,3 @@ button[type="submit"]:hover {
 .login-link a:hover {
   text-decoration: underline;
 }
-
-.error-message {
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
