@@ -1,0 +1,20 @@
+-- SQLite schema for rol_game_db
+
+-- Create characters table
+CREATE TABLE IF NOT EXISTS characters (
+    char_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    race TEXT NOT NULL,
+    char_name TEXT NOT NULL,
+    char_weight REAL,
+    objects TEXT,
+    abilities TEXT,
+    dexterity INTEGER CHECK (dexterity >= 0 AND dexterity <= 100)
+);
+
+-- Insert sample data
+INSERT INTO characters (race, char_name, char_weight, objects, abilities, dexterity) VALUES
+('Elfo', 'Legolas', 70.5, 'Arco y Flechas', 'Vista élfica: puede ver a grandes distancias con claridad', 95),
+('Enano', 'Gimli', 82.3, 'Hacha y Escudo', 'Resistencia pétrea: reduce el daño físico recibido', 75),
+('Humano', 'Aragorn', 85.0, 'Espada y Daga', 'Liderazgo: mejora las habilidades de los aliados cercanos', 88),
+('Troll', 'Grug', 150.2, 'Garrote y Piedras', 'Fuerza hercúlea: puede levantar objetos extremadamente pesados', 45),
+('Elfo', 'Arwen', 65.8, 'Espada y Brújula', 'Sanación élfica: puede curar heridas leves', 85);

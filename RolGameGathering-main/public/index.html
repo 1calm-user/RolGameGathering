@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rol Game Gathering - Landing Page</title>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="icon" href="/imagenes/icon.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+
+        <div class="hero-section">
+            <div class="project-info">
+                <h2>Bienvenido a Rol Game Gathering</h2>
+                <p>Una aplicación web diseñada para gestionar personajes de juegos de rol de manera intuitiva y eficiente. Crea, visualiza, modifica y administra tus personajes en un entorno amigable y organizado.</p>
+            </div>
+        </div>
+
+        <div class="github-info">
+            <h2>Información del Proyecto</h2>
+            <div class="info-content">
+                <div class="info-item">
+                    <span class="icon">📁</span>
+                    <p>Repositorio GitHub: <a href="https://github.com/1calm-user/RolGameGathering" target="_blank">RolGameGathering</a></p>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🔑</span>
+                    <div class="credentials">
+                        <p>Credenciales de Administrador:</p>
+                        <ul>
+                            <li><strong>Usuario:</strong> admin</li>
+                            <li><strong>Contraseña:</strong> admin123</li>
+                        </ul>
+                        <p>Para acceder como administrador, utiliza estas credenciales en la página de <a href="./login.html">inicio de sesión</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-nav">
+            <div class="nav-item" data-aos="fade-up">
+                <div class="nav-icon">👥</div>
+                <h3>Ver Personajes</h3>
+                <p>Explora todos los personajes creados en la aplicación.</p>
+                <a href="/CRUD/verP.html" class="nav-button">Ver Personajes</a>
+            </div>
+            <div class="nav-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="nav-icon">✨</div>
+                <h3>Crear Personaje</h3>
+                <p>Crea un nuevo personaje con características únicas.</p>
+                <a href="/CRUD/crearP.html" class="nav-button">Crear Personaje</a>
+            </div>
+            <div class="nav-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="nav-icon">🔄</div>
+                <h3>Modificar Personaje</h3>
+                <p>Actualiza la información de tus personajes existentes.</p>
+                <a href="/CRUD/modificarP.html" class="nav-button">Modificar Personajes</a>
+            </div>
+            <div class="nav-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="nav-icon">❌</div>
+                <h3>Eliminar Personaje</h3>
+                <p>Elimina personajes que ya no necesites.</p>
+                <a href="/CRUD/eliminarP.html" class="nav-button">Eliminar Personajes</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+
+    </script>
+</body>
+</html>
