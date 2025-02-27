@@ -112,6 +112,15 @@ input[type="button"]:disabled {
   cursor: not-allowed;
 }
 
+a {
+  color: var(--darkBlue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .error {
   color: #f44336;
   font-size: 0.8em;
@@ -156,15 +165,6 @@ input.error {
 
 .toast-info {
   background-color: #2196F3;
-}
-
-a {
-  color: var(--darkBlue);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .error-message {
