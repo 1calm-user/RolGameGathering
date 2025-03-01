@@ -42,6 +42,7 @@ body {
 .form-container {
   background: linear-gradient(var(--midYellowCream1), 70%, var(--lightYellow));
   padding: 0.5rem;
+  margin-left: 100px;
   border-radius: 10px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
   width: 100%;
