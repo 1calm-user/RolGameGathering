@@ -66,8 +66,10 @@ class CharacterManager {
                 <td>${character.abilities}</td>
                 <td>${character.dexterity}</td>
                 <td>
-                    <a href="modificarP.html?id=${character.char_id}" class="btn-edit">Editar</a>
-                    <button onclick="characterManager.deleteCharacter(${character.char_id})" class="btn-delete">Eliminar</button>
+                    <div>
+                        <a href="modificarP.html?id=${character.char_id}" class="btn-edit">Editar</a>
+                        <button onclick="characterManager.deleteCharacter(${character.char_id})" class="btn-delete">Eliminar</button>
+                    </div>
                 </td>
             </tr>
         `;
