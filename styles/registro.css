@@ -66,9 +66,8 @@ body {
 }
 
 label {
-  display: block;
   margin-bottom: 0.5rem;
-  color: var(--neutralBlue);
+  color: var(--darkBlack);
   font-weight: bold;
 }
 
@@ -130,6 +129,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
+  color: var(--darkBlack);
   background-color: var(--neutralBlue);
   filter: saturate(1.6);
 }
